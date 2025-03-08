@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Generate coverage report
-        run: pnpm test -- --coverage
+      - name: Run Tests
+        run: pnpm test
 
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@v3
