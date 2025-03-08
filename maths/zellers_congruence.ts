@@ -1,6 +1,6 @@
 export enum Calendar {
-  Gregorian,
-  Julian
+	Gregorian,
+	Julian
 }
 
 /**
@@ -15,54 +15,54 @@ export enum Calendar {
  * @example getWeekday(1500, 1, 1, Calendar.Julian) = 3
  */
 export const getWeekday = (
-  year: number,
-  month: number,
-  day: number,
-  calendar: Calendar = Calendar.Gregorian
+	year: number,
+	month: number,
+	day: number,
+	calendar: Calendar = Calendar.Gregorian
 ): number => {
-  // Input validation
-  if (!Number.isInteger(year) || year < 1) {
-    throw new Error('Year must be an integer greater than 0')
-  }
+	// Input validation
+	if (!Number.isInteger(year) || year < 1) {
+		throw new Error('Year must be an integer greater than 0')
+	}
 
-  if (!Number.isInteger(month) || month < 1 || month > 12) {
-    throw new Error('Month must be an integer between 1 and 12')
-  }
+	if (!Number.isInteger(month) || month < 1 || month > 12) {
+		throw new Error('Month must be an integer between 1 and 12')
+	}
 
-  if (!Number.isInteger(day) || day < 1 || day > 31) {
-    throw new Error('Day must be an integer between 1 and 31')
-  }
+	if (!Number.isInteger(day) || day < 1 || day > 31) {
+		throw new Error('Day must be an integer between 1 and 31')
+	}
 
-  // Move January and February to the end of the previous year
-  if (month < 3) {
-    month += 12
-    year--
-  }
+	// Move January and February to the end of the previous year
+	if (month < 3) {
+		month += 12
+		year--
+	}
 
-  const century = Math.floor(year / 100)
-  year %= 100
+	const century = Math.floor(year / 100)
+	year %= 100
 
-  let weekday: number | undefined = undefined
-  if (calendar === Calendar.Gregorian) {
-    weekday =
-      (day +
-        Math.floor(2.6 * (month + 1)) +
-        year +
-        Math.floor(year / 4) +
-        Math.floor(century / 4) +
-        5 * century) %
-      7
-  } else {
-    weekday =
-      (day +
-        Math.floor(2.6 * (month + 1)) +
-        year +
-        Math.floor(year / 4) +
-        5 +
-        6 * century) %
-      7
-  }
+	let weekday: number | undefined = undefined
+	if (calendar === Calendar.Gregorian) {
+		weekday =
+			(day +
+				Math.floor(2.6 * (month + 1)) +
+				year +
+				Math.floor(year / 4) +
+				Math.floor(century / 4) +
+				5 * century) %
+			7
+	} else {
+		weekday =
+			(day +
+				Math.floor(2.6 * (month + 1)) +
+				year +
+				Math.floor(year / 4) +
+				5 +
+				6 * century) %
+			7
+	}
 
-  // Convert to Sunday being 0
-  return (weekday + 6) % 7
+	// Convert to Sunday being 0
+	return (weekday + 6) % 7
 }

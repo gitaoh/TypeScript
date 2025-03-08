@@ -14,15 +14,15 @@
  * @example pronicNumber(49) = false
  */
 const pronicNumber = (n: number) => {
-  if (isNaN(n)) throw new Error('The input needs to be a number')
-  if (!Number.isInteger(n) || n < 0)
-    throw new Error('The input needs to be a non-negative integer')
-  if (n === 0) return true
+	if (isNaN(n)) throw new Error('The input needs to be a number')
+	if (!Number.isInteger(n) || n < 0)
+		throw new Error('The input needs to be a non-negative integer')
+	if (n === 0) return true
 
-  return (
-    !Number.isInteger(Math.sqrt(n)) &&
-    Math.floor(Math.sqrt(n)) * Math.ceil(Math.sqrt(n)) === n
-  )
+	return (
+		!Number.isInteger(Math.sqrt(n)) &&
+		Math.floor(Math.sqrt(n)) * Math.ceil(Math.sqrt(n)) === n
+	)
 }
 
 export { pronicNumber }

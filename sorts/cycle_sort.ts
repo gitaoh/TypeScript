@@ -8,61 +8,61 @@
  */
 
 export const cycleSort = (array: number[]) => {
-  for (let i: number = 0; i < array.length - 1; i++) {
-    MoveCycle(array, i)
-  }
-  return array
+	for (let i: number = 0; i < array.length - 1; i++) {
+		MoveCycle(array, i)
+	}
+	return array
 }
 
 function MoveCycle(array: number[], startIndex: number): void {
-  let currentItem: number = array[startIndex]
-  let nextChangeIndex: number =
-    startIndex + CountSmallerItems(array, startIndex, currentItem)
-  if (nextChangeIndex == startIndex) {
-    return
-  }
+	let currentItem: number = array[startIndex]
+	let nextChangeIndex: number =
+		startIndex + CountSmallerItems(array, startIndex, currentItem)
+	if (nextChangeIndex == startIndex) {
+		return
+	}
 
-  nextChangeIndex = SkipDuplicates(array, nextChangeIndex, currentItem)
+	nextChangeIndex = SkipDuplicates(array, nextChangeIndex, currentItem)
 
-  let tmp: number = array[nextChangeIndex]
-  array[nextChangeIndex] = currentItem
-  currentItem = tmp
+	let tmp: number = array[nextChangeIndex]
+	array[nextChangeIndex] = currentItem
+	currentItem = tmp
 
-  while (nextChangeIndex != startIndex) {
-    nextChangeIndex =
-      startIndex + CountSmallerItems(array, startIndex, currentItem)
-    nextChangeIndex = SkipDuplicates(array, nextChangeIndex, currentItem)
+	while (nextChangeIndex != startIndex) {
+		nextChangeIndex =
+			startIndex + CountSmallerItems(array, startIndex, currentItem)
+		nextChangeIndex = SkipDuplicates(array, nextChangeIndex, currentItem)
 
-    tmp = array[nextChangeIndex]
-    array[nextChangeIndex] = currentItem
-    currentItem = tmp
-  }
+		tmp = array[nextChangeIndex]
+		array[nextChangeIndex] = currentItem
+		currentItem = tmp
+	}
 }
 
 function CountSmallerItems(
-  array: number[],
-  startIndex: number,
-  currentItem: number
+	array: number[],
+	startIndex: number,
+	currentItem: number
 ): number {
-  let elementsCount: number = 0
+	let elementsCount: number = 0
 
-  for (let i: number = startIndex + 1; i < array.length; i++) {
-    if (currentItem > array[i]) {
-      elementsCount++
-    }
-  }
+	for (let i: number = startIndex + 1; i < array.length; i++) {
+		if (currentItem > array[i]) {
+			elementsCount++
+		}
+	}
 
-  return elementsCount
+	return elementsCount
 }
 
 function SkipDuplicates(
-  array: number[],
-  currentPosition: number,
-  currentItem: number
+	array: number[],
+	currentPosition: number,
+	currentItem: number
 ): number {
-  while (array[currentPosition] == currentItem) {
-    currentPosition++
-  }
+	while (array[currentPosition] == currentItem) {
+		currentPosition++
+	}
 
-  return currentPosition
+	return currentPosition
 }

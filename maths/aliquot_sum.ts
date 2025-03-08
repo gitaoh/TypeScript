@@ -13,15 +13,16 @@
  * @example aliquotSum(15) = 9
  */
 export const aliquotSum = (num: number): number => {
-  if (typeof num !== 'number') throw new TypeError('Input needs to be a number')
-  if (num < 0) throw new TypeError('Input cannot be negative')
-  if (!Number.isInteger(num)) throw new TypeError('Input cannot be a decimal')
+	if (typeof num !== 'number')
+		throw new TypeError('Input needs to be a number')
+	if (num < 0) throw new TypeError('Input cannot be negative')
+	if (!Number.isInteger(num)) throw new TypeError('Input cannot be a decimal')
 
-  let sum = 0
+	let sum = 0
 
-  for (let i = 1; i <= num / 2; i++) {
-    if (num % i === 0) sum += i
-  }
+	for (let i = 1; i <= num / 2; i++) {
+		if (num % i === 0) sum += i
+	}
 
-  return sum
+	return sum
 }

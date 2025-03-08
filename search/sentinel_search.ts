@@ -23,22 +23,23 @@
  */
 
 export const sentinelSearch = (
-  array: number[],
-  target: number
+	array: number[],
+	target: number
 ): number | null => {
-  const arrayLength = array.length
-  if (arrayLength === 0) return null
+	const arrayLength = array.length
+	if (arrayLength === 0) return null
 
-  // Element to be searched is placed at the last index
-  const last = array[arrayLength - 1]
-  array[arrayLength - 1] = target
+	// Element to be searched is placed at the last index
+	const last = array[arrayLength - 1]
+	array[arrayLength - 1] = target
 
-  let index: number = 0
-  while (array[index] !== target) index += 1
+	let index: number = 0
+	while (array[index] !== target) index += 1
 
-  // Put the last element back
-  array[arrayLength - 1] = last
+	// Put the last element back
+	array[arrayLength - 1] = last
 
-  if (index < arrayLength - 1 || array[arrayLength - 1] === target) return index
-  return null
+	if (index < arrayLength - 1 || array[arrayLength - 1] === target)
+		return index
+	return null
 }

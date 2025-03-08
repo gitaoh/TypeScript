@@ -10,7 +10,7 @@
  */
 
 export const absoluteValue = (number: number): number => {
-  // if input number is less than 0, convert it to positive via double negation
-  // e.g. if n = -2, then return -(-2) = 2
-  return number < 0 ? -number : number
+	// if input number is less than 0, convert it to positive via double negation
+	// e.g. if n = -2, then return -(-2) = 2
+	return number < 0 ? -number : number
 }

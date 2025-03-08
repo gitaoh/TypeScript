@@ -9,20 +9,20 @@
  */
 
 export const countingSort = (inputArr: number[], min: number, max: number) => {
-  const sortedArr = []
+	const sortedArr = []
 
-  const count = new Array(max - min + 1).fill(0)
+	const count = new Array(max - min + 1).fill(0)
 
-  for (const element of inputArr) count[element - min]++
+	for (const element of inputArr) count[element - min]++
 
-  count[0] -= 1
+	count[0] -= 1
 
-  for (let i = 1; i < count.length; i++) count[i] += count[i - 1]
+	for (let i = 1; i < count.length; i++) count[i] += count[i - 1]
 
-  for (let i = inputArr.length - 1; i >= 0; i--) {
-    sortedArr[count[inputArr[i] - min]] = inputArr[i]
-    count[inputArr[i] - min]--
-  }
+	for (let i = inputArr.length - 1; i >= 0; i--) {
+		sortedArr[count[inputArr[i] - min]] = inputArr[i]
+		count[inputArr[i] - min]--
+	}
 
-  return sortedArr
+	return sortedArr
 }

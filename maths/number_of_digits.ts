@@ -10,9 +10,9 @@
  */
 
 export const numberOfDigits = (num: number): number => {
-  if (num <= 0 || !Number.isInteger(num)) {
-    throw new Error('only natural numbers are supported')
-  }
+	if (num <= 0 || !Number.isInteger(num)) {
+		throw new Error('only natural numbers are supported')
+	}
 
-  return Math.floor(Math.log10(num)) + 1
+	return Math.floor(Math.log10(num)) + 1
 }

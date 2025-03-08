@@ -14,9 +14,9 @@
  * @example signum("hello world") = NaN
  */
 export const signum = (num: number) => {
-  if (num === 0) return 0
-  if (num > 0) return 1
-  if (num < 0) return -1
+	if (num === 0) return 0
+	if (num > 0) return 1
+	if (num < 0) return -1
 
-  return NaN
+	return NaN
 }

@@ -14,39 +14,39 @@ import { greatestCommonFactor } from './greatest_common_factor'
 //A naive solution which requires no additional mathematical algorithm
 
 export const naiveLCM = (nums: number[]): number => {
-  if (nums.some((num) => num < 0)) {
-    throw new Error(
-      'numbers must be positive to determine lowest common multiple'
-    )
-  }
+	if (nums.some((num) => num < 0)) {
+		throw new Error(
+			'numbers must be positive to determine lowest common multiple'
+		)
+	}
 
-  if (nums.length === 0) {
-    throw new Error('at least one number must be passed in')
-  }
+	if (nums.length === 0) {
+		throw new Error('at least one number must be passed in')
+	}
 
-  const max_num = Math.max(...nums)
-  let current_num = max_num
+	const max_num = Math.max(...nums)
+	let current_num = max_num
 
-  while (true) {
-    if (nums.every((num) => current_num % num === 0)) {
-      return current_num
-    } else {
-      current_num += max_num
-    }
-  }
+	while (true) {
+		if (nums.every((num) => current_num % num === 0)) {
+			return current_num
+		} else {
+			current_num += max_num
+		}
+	}
 }
 
 //A typically more efficient solution which requires prior knowledge of GCF
 //Note that due to utilizing GCF, which requires natural numbers, this method only accepts natural numbers.
 
 export const binaryLCM = (a: number, b: number): number => {
-  return (a * b) / greatestCommonFactor([a, b])
+	return (a * b) / greatestCommonFactor([a, b])
 }
 
 export const lowestCommonMultiple = (nums: number[]): number => {
-  if (nums.length === 0) {
-    throw new Error('at least one number must be passed in')
-  }
+	if (nums.length === 0) {
+		throw new Error('at least one number must be passed in')
+	}
 
-  return nums.reduce(binaryLCM)
+	return nums.reduce(binaryLCM)
 }

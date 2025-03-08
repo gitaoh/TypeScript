@@ -8,9 +8,9 @@
  * @example isEven(2) = true
  */
 export const isEven = (num: number): boolean => {
-  if (!Number.isInteger(num)) {
-    throw new Error('only integers can be even or odd')
-  }
+	if (!Number.isInteger(num)) {
+		throw new Error('only integers can be even or odd')
+	}
 
-  return num % 2 === 0
+	return num % 2 === 0
 }

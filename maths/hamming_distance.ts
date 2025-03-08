@@ -13,14 +13,14 @@
  * @example hammingDistance('happy', 'homie')
  */
 const hammingDistance = (str1: string, str2: string) => {
-  if (str1.length !== str2.length)
-    throw new Error('Strings must of the same length.')
+	if (str1.length !== str2.length)
+		throw new Error('Strings must of the same length.')
 
-  let dist = 0
+	let dist = 0
 
-  for (let i = 0; i < str1.length; i++) if (str1[i] !== str2[i]) dist++
+	for (let i = 0; i < str1.length; i++) if (str1[i] !== str2[i]) dist++
 
-  return dist
+	return dist
 }
 
 export { hammingDistance }

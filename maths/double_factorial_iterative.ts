@@ -17,12 +17,12 @@
  * @example DoubleFactorialIterative(5) = 15
  */
 const DoubleFactorialIterative = (n: number) => {
-  if (n < 0) throw new RangeError('The number needs to be non-negative')
-  let doubleFactorial = 1
+	if (n < 0) throw new RangeError('The number needs to be non-negative')
+	let doubleFactorial = 1
 
-  for (let i = n; i > 0; i -= 2) doubleFactorial *= i
+	for (let i = n; i > 0; i -= 2) doubleFactorial *= i
 
-  return doubleFactorial
+	return doubleFactorial
 }
 
 export { DoubleFactorialIterative }

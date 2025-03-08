@@ -10,29 +10,29 @@
  * @see [GeeksForGeeks](https://www.geeksforgeeks.org/ugly-numbers/)
  */
 function* uglyNumbers(): Generator<number, void, unknown> {
-  yield 1
+	yield 1
 
-  let idx2 = 0,
-    idx3 = 0,
-    idx5 = 0
-  const uglyNums = [1]
+	let idx2 = 0,
+		idx3 = 0,
+		idx5 = 0
+	const uglyNums = [1]
 
-  let nextx2: number, nextx3: number, nextx5: number, nextUglyNum: number
+	let nextx2: number, nextx3: number, nextx5: number, nextUglyNum: number
 
-  while (true) {
-    nextx2 = uglyNums[idx2] * 2
-    nextx3 = uglyNums[idx3] * 3
-    nextx5 = uglyNums[idx5] * 5
+	while (true) {
+		nextx2 = uglyNums[idx2] * 2
+		nextx3 = uglyNums[idx3] * 3
+		nextx5 = uglyNums[idx5] * 5
 
-    nextUglyNum = Math.min(nextx2, nextx3, nextx5)
-    yield nextUglyNum
+		nextUglyNum = Math.min(nextx2, nextx3, nextx5)
+		yield nextUglyNum
 
-    if (nextx2 === nextUglyNum) idx2++
-    if (nextx3 === nextUglyNum) idx3++
-    if (nextx5 === nextUglyNum) idx5++
+		if (nextx2 === nextUglyNum) idx2++
+		if (nextx3 === nextUglyNum) idx3++
+		if (nextx5 === nextUglyNum) idx5++
 
-    uglyNums.push(nextUglyNum)
-  }
+		uglyNums.push(nextUglyNum)
+	}
 }
 
 export { uglyNumbers }

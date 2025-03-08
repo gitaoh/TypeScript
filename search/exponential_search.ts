@@ -19,22 +19,22 @@ import { binarySearchIterative } from './binary_search'
  */
 
 export const exponentialSearch = (
-  array: number[],
-  x: number
+	array: number[],
+	x: number
 ): number | null => {
-  const arrayLength = array.length
-  if (arrayLength === 0) return null
+	const arrayLength = array.length
+	if (arrayLength === 0) return null
 
-  if (array[0] === x) return 0
+	if (array[0] === x) return 0
 
-  let i = 1
-  while (i < arrayLength && array[i] <= x) {
-    i = i * 2
-  }
+	let i = 1
+	while (i < arrayLength && array[i] <= x) {
+		i = i * 2
+	}
 
-  const start = Math.floor(i / 2)
-  const end = Math.min(i, arrayLength - 1)
-  const result = binarySearchIterative(array, x, start, end)
+	const start = Math.floor(i / 2)
+	const end = Math.min(i, arrayLength - 1)
+	const result = binarySearchIterative(array, x, start, end)
 
-  return result
+	return result
 }

@@ -11,38 +11,38 @@ import { PriorityQueue } from '../data_structures/heap/heap'
  * @see https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
  */
 export const dijkstra = (
-  graph: [number, number][][],
-  start: number
+	graph: [number, number][][],
+	start: number
 ): number[] => {
-  // We use a priority queue to make sure we always visit the closest node. The
-  // queue makes comparisons based on path weights.
-  const priorityQueue = new PriorityQueue(
-    (a: [number, number]) => {
-      return a[0]
-    },
-    graph.length,
-    (a: [number, number], b: [number, number]) => {
-      return a[1] < b[1]
-    }
-  )
-  priorityQueue.insert([start, 0])
-  // We save the shortest distance to each node in `distances`. If a node is
-  // unreachable from the start node, its distance is Infinity.
-  const distances = Array(graph.length).fill(Infinity)
-  distances[start] = 0
+	// We use a priority queue to make sure we always visit the closest node. The
+	// queue makes comparisons based on path weights.
+	const priorityQueue = new PriorityQueue(
+		(a: [number, number]) => {
+			return a[0]
+		},
+		graph.length,
+		(a: [number, number], b: [number, number]) => {
+			return a[1] < b[1]
+		}
+	)
+	priorityQueue.insert([start, 0])
+	// We save the shortest distance to each node in `distances`. If a node is
+	// unreachable from the start node, its distance is Infinity.
+	const distances = Array(graph.length).fill(Infinity)
+	distances[start] = 0
 
-  while (priorityQueue.size() > 0) {
-    const node = priorityQueue.extract()[0]
-    graph[node].forEach(([child, weight]) => {
-      const new_distance = distances[node] + weight
-      if (new_distance < distances[child]) {
-        // Found a new shortest path to child node. Record its distance and add child to the queue.
-        // If the child already exists in the queue, the priority will be updated. This will make sure the queue will be at most size V (number of vertices).
-        priorityQueue.increasePriority(child, [child, weight])
-        distances[child] = new_distance
-      }
-    })
-  }
+	while (priorityQueue.size() > 0) {
+		const node = priorityQueue.extract()[0]
+		graph[node].forEach(([child, weight]) => {
+			const new_distance = distances[node] + weight
+			if (new_distance < distances[child]) {
+				// Found a new shortest path to child node. Record its distance and add child to the queue.
+				// If the child already exists in the queue, the priority will be updated. This will make sure the queue will be at most size V (number of vertices).
+				priorityQueue.increasePriority(child, [child, weight])
+				distances[child] = new_distance
+			}
+		})
+	}
 
-  return distances
+	return distances
 }

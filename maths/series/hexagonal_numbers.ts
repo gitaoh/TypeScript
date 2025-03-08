@@ -15,14 +15,14 @@
  * @example HexagonalNumbers(15) =  [ 1, 6, 15, 28, 45, 66, 91, 120, 153, 190, 231, 276, 325, 378, 435 ]
  */
 export const HexagonalNumbers = (n: number): number[] => {
-  if (isNaN(n)) throw new Error('The input needs to be a number')
-  if (!Number.isInteger(n) || n < 0)
-    throw new Error('The input needs to be a non-negative integer')
-  const hexagonalNumbers = []
+	if (isNaN(n)) throw new Error('The input needs to be a number')
+	if (!Number.isInteger(n) || n < 0)
+		throw new Error('The input needs to be a non-negative integer')
+	const hexagonalNumbers = []
 
-  for (let i = 1; i <= n; i++) {
-    hexagonalNumbers.push(i * (2 * i - 1))
-  }
+	for (let i = 1; i <= n; i++) {
+		hexagonalNumbers.push(i * (2 * i - 1))
+	}
 
-  return hexagonalNumbers
+	return hexagonalNumbers
 }

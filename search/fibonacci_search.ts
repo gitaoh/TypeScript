@@ -14,44 +14,44 @@
  */
 
 export const fibonacciSearch = (
-  array: number[],
-  target: number
+	array: number[],
+	target: number
 ): number | null => {
-  const arrayLength = array.length
-  let a = 0 // (n-2)'th Fibonacci No.
-  let b = 1 // (n-1)'th Fibonacci No.
-  let c = a + b // n'th Fibonacci
+	const arrayLength = array.length
+	let a = 0 // (n-2)'th Fibonacci No.
+	let b = 1 // (n-1)'th Fibonacci No.
+	let c = a + b // n'th Fibonacci
 
-  while (c < arrayLength) {
-    a = b
-    b = c
-    c = a + b
-  }
+	while (c < arrayLength) {
+		a = b
+		b = c
+		c = a + b
+	}
 
-  let offset = -1
+	let offset = -1
 
-  while (c > 1) {
-    let i = Math.min(offset + a, arrayLength - 1)
+	while (c > 1) {
+		let i = Math.min(offset + a, arrayLength - 1)
 
-    if (array[i] < target) {
-      c = b
-      b = a
-      a = c - b
-      offset = i
-    } else if (array[i] > target) {
-      c = a
-      b = b - a
-      a = c - b
-    } else {
-      // Element found then return index
-      return i
-    }
-  }
+		if (array[i] < target) {
+			c = b
+			b = a
+			a = c - b
+			offset = i
+		} else if (array[i] > target) {
+			c = a
+			b = b - a
+			a = c - b
+		} else {
+			// Element found then return index
+			return i
+		}
+	}
 
-  if (b && array[offset + 1] === target) {
-    return offset + 1
-  }
+	if (b && array[offset + 1] === target) {
+		return offset + 1
+	}
 
-  // Element not found then return null
-  return null
+	// Element not found then return null
+	return null
 }

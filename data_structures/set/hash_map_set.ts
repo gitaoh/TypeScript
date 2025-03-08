@@ -9,16 +9,16 @@ import { MapSet } from './map_set'
  * @extends MapSet<K>
  */
 export class HashMapSet<K> extends MapSet<K> {
-  constructor() {
-    super()
-  }
+	constructor() {
+		super()
+	}
 
-  /**
-   * Initializes the map used to store the set.
-   *
-   * @returns {Map<K, null>} The map used to store the set.
-   */
-  protected initMap(): Map<K, null> {
-    return new HashMap<K, null>()
-  }
+	/**
+	 * Initializes the map used to store the set.
+	 *
+	 * @returns {Map<K, null>} The map used to store the set.
+	 */
+	protected initMap(): Map<K, null> {
+		return new HashMap<K, null>()
+	}
 }

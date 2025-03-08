@@ -10,16 +10,16 @@
  * @example findMin([1,0.1,-1]) = -1
  */
 export const findMin = (nums: number[]): number => {
-  if (nums.length === 0) {
-    throw new Error('array must have length of 1 or greater')
-  }
+	if (nums.length === 0) {
+		throw new Error('array must have length of 1 or greater')
+	}
 
-  let minimumSeen: number = nums[0]
-  for (const num of nums) {
-    if (num < minimumSeen) {
-      minimumSeen = num
-    }
-  }
+	let minimumSeen: number = nums[0]
+	for (const num of nums) {
+		if (num < minimumSeen) {
+			minimumSeen = num
+		}
+	}
 
-  return minimumSeen
+	return minimumSeen
 }

@@ -6,30 +6,30 @@
  */
 
 const generateParentheses = (n: number): string[] => {
-  const result: string[] = []
+	const result: string[] = []
 
-  const solve = (
-    chars: string,
-    openParentheses: number,
-    closedParentheses: number
-  ) => {
-    if (openParentheses === n && closedParentheses === n) {
-      result.push(chars)
-      return
-    }
+	const solve = (
+		chars: string,
+		openParentheses: number,
+		closedParentheses: number
+	) => {
+		if (openParentheses === n && closedParentheses === n) {
+			result.push(chars)
+			return
+		}
 
-    if (openParentheses <= n) {
-      solve(chars + '(', openParentheses + 1, closedParentheses)
-    }
+		if (openParentheses <= n) {
+			solve(chars + '(', openParentheses + 1, closedParentheses)
+		}
 
-    if (closedParentheses < openParentheses) {
-      solve(chars + ')', openParentheses, closedParentheses + 1)
-    }
-  }
+		if (closedParentheses < openParentheses) {
+			solve(chars + ')', openParentheses, closedParentheses + 1)
+		}
+	}
 
-  solve('', 0, 0)
+	solve('', 0, 0)
 
-  return result
+	return result
 }
 
 export { generateParentheses }

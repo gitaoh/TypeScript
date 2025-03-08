@@ -12,42 +12,42 @@ import { dijkstra } from './dijkstra'
  * @see https://en.wikipedia.org/wiki/Johnson%27s_algorithm
  */
 export const johnson = (
-  graph: [number, number][][]
+	graph: [number, number][][]
 ): number[][] | undefined => {
-  const N = graph.length
+	const N = graph.length
 
-  // Add a new node and 0 weighted edges from the new node to all existing nodes.
-  const newNodeGraph = structuredClone(graph)
-  const newNode: [number, number][] = []
-  for (let i = 0; i < N; ++i) {
-    newNode.push([i, 0])
-  }
-  newNodeGraph.push(newNode)
+	// Add a new node and 0 weighted edges from the new node to all existing nodes.
+	const newNodeGraph = structuredClone(graph)
+	const newNode: [number, number][] = []
+	for (let i = 0; i < N; ++i) {
+		newNode.push([i, 0])
+	}
+	newNodeGraph.push(newNode)
 
-  // Compute distances from the new node to existing nodes using the Bellman-Ford algorithm.
-  const adjustedGraph = bellmanFord(newNodeGraph, N)
-  if (adjustedGraph === undefined) {
-    // Found a negative weight cycle.
-    return undefined
-  }
+	// Compute distances from the new node to existing nodes using the Bellman-Ford algorithm.
+	const adjustedGraph = bellmanFord(newNodeGraph, N)
+	if (adjustedGraph === undefined) {
+		// Found a negative weight cycle.
+		return undefined
+	}
 
-  for (let i = 0; i < N; ++i) {
-    for (const edge of graph[i]) {
-      // Adjust edge weights using the Bellman Ford output weights. This ensure that:
-      // 1. Each weight is non-negative. This is required for the Dijkstra algorithm.
-      // 2. The shortest path from node i to node j consists of the same nodes with or without adjustment.
-      edge[1] += adjustedGraph[i] - adjustedGraph[edge[0]]
-    }
-  }
+	for (let i = 0; i < N; ++i) {
+		for (const edge of graph[i]) {
+			// Adjust edge weights using the Bellman Ford output weights. This ensure that:
+			// 1. Each weight is non-negative. This is required for the Dijkstra algorithm.
+			// 2. The shortest path from node i to node j consists of the same nodes with or without adjustment.
+			edge[1] += adjustedGraph[i] - adjustedGraph[edge[0]]
+		}
+	}
 
-  const shortestPaths: number[][] = []
-  for (let i = 0; i < N; ++i) {
-    // Compute Dijkstra weights for each node and re-adjust weights to their original values.
-    const dijkstraShorestPaths = dijkstra(graph, i)
-    for (let j = 0; j < N; ++j) {
-      dijkstraShorestPaths[j] += adjustedGraph[j] - adjustedGraph[i]
-    }
-    shortestPaths.push(dijkstraShorestPaths)
-  }
-  return shortestPaths
+	const shortestPaths: number[][] = []
+	for (let i = 0; i < N; ++i) {
+		// Compute Dijkstra weights for each node and re-adjust weights to their original values.
+		const dijkstraShorestPaths = dijkstra(graph, i)
+		for (let j = 0; j < N; ++j) {
+			dijkstraShorestPaths[j] += adjustedGraph[j] - adjustedGraph[i]
+		}
+		shortestPaths.push(dijkstraShorestPaths)
+	}
+	return shortestPaths
 }

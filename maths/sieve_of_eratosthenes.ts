@@ -9,18 +9,18 @@
  */
 
 export function sieveOfEratosthenes(n: number): number[] {
-  if (n < 0 || !Number.isInteger(n)) {
-    throw new Error('Only natural numbers are supported')
-  }
-  const numbers = new Array<boolean>(n + 1).fill(true)
-  const primeNumbers: number[] = []
-  for (let i = 2; i <= n; i++) {
-    if (numbers[i]) {
-      primeNumbers.push(i)
-      for (let j = i + i; j <= n; j += i) {
-        numbers[j] = false
-      }
-    }
-  }
-  return primeNumbers
+	if (n < 0 || !Number.isInteger(n)) {
+		throw new Error('Only natural numbers are supported')
+	}
+	const numbers = new Array<boolean>(n + 1).fill(true)
+	const primeNumbers: number[] = []
+	for (let i = 2; i <= n; i++) {
+		if (numbers[i]) {
+			primeNumbers.push(i)
+			for (let j = i + i; j <= n; j += i) {
+				numbers[j] = false
+			}
+		}
+	}
+	return primeNumbers
 }

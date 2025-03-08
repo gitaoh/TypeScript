@@ -1,22 +1,22 @@
 const dfs = (
-  graph: number[][],
-  colors: number[],
-  node: number,
-  color: number
+	graph: number[][],
+	colors: number[],
+	node: number,
+	color: number
 ): boolean => {
-  if (colors[node] !== 0) {
-    return colors[node] === color
-  }
+	if (colors[node] !== 0) {
+		return colors[node] === color
+	}
 
-  colors[node] = color
+	colors[node] = color
 
-  for (const neighbor of graph[node]) {
-    if (!dfs(graph, colors, neighbor, -color)) {
-      return false
-    }
-  }
+	for (const neighbor of graph[node]) {
+		if (!dfs(graph, colors, neighbor, -color)) {
+			return false
+		}
+	}
 
-  return true
+	return true
 }
 
 /**
@@ -31,14 +31,14 @@ const dfs = (
  */
 
 export const isBipartite = (graph: number[][]): boolean => {
-  const n: number = graph.length
-  const colors: number[] = new Array(n).fill(0)
+	const n: number = graph.length
+	const colors: number[] = new Array(n).fill(0)
 
-  for (let i = 0; i < n; i++) {
-    if (colors[i] === 0 && !dfs(graph, colors, i, 1)) {
-      return false
-    }
-  }
+	for (let i = 0; i < n; i++) {
+		if (colors[i] === 0 && !dfs(graph, colors, i, 1)) {
+			return false
+		}
+	}
 
-  return true
+	return true
 }

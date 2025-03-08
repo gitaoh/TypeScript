@@ -9,13 +9,13 @@
  */
 
 export const calculateMean = (numbers: number[]): number => {
-  if (numbers.length < 1) {
-    throw new TypeError('Invalid Input')
-  }
+	if (numbers.length < 1) {
+		throw new TypeError('Invalid Input')
+	}
 
-  // This loop sums all values in the 'numbers' array using an array reducer
-  const sum = numbers.reduce((sum, current) => sum + current, 0)
+	// This loop sums all values in the 'numbers' array using an array reducer
+	const sum = numbers.reduce((sum, current) => sum + current, 0)
 
-  // Divide sum by the length of the 'numbers' array.
-  return sum / numbers.length
+	// Divide sum by the length of the 'numbers' array.
+	return sum / numbers.length
 }

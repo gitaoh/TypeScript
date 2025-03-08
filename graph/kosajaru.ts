@@ -1,54 +1,54 @@
 // Compute the node priorities, which will be used to determine the order in which we perform transposed DFS.
 const getNodePriorities = (
-  graph: number[][],
-  visited: boolean[],
-  stack: number[],
-  node: number
+	graph: number[][],
+	visited: boolean[],
+	stack: number[],
+	node: number
 ) => {
-  if (visited[node]) {
-    return
-  }
-  visited[node] = true
+	if (visited[node]) {
+		return
+	}
+	visited[node] = true
 
-  for (const dest of graph[node]) {
-    getNodePriorities(graph, visited, stack, dest)
-  }
-  // Nodes that end their DFS earlier are pushed onto the stack first and have lower priority.
-  stack.push(node)
+	for (const dest of graph[node]) {
+		getNodePriorities(graph, visited, stack, dest)
+	}
+	// Nodes that end their DFS earlier are pushed onto the stack first and have lower priority.
+	stack.push(node)
 }
 
 // Return the transpose of graph. The tranpose of a directed graph is a graph where each of the edges are flipped.
 const transpose = (graph: number[][]): number[][] => {
-  const transposedGraph = Array(graph.length)
-  for (let i = 0; i < graph.length; ++i) {
-    transposedGraph[i] = []
-  }
+	const transposedGraph = Array(graph.length)
+	for (let i = 0; i < graph.length; ++i) {
+		transposedGraph[i] = []
+	}
 
-  for (let i = 0; i < graph.length; ++i) {
-    for (let j = 0; j < graph[i].length; ++j) {
-      transposedGraph[graph[i][j]].push(i)
-    }
-  }
+	for (let i = 0; i < graph.length; ++i) {
+		for (let j = 0; j < graph[i].length; ++j) {
+			transposedGraph[graph[i][j]].push(i)
+		}
+	}
 
-  return transposedGraph
+	return transposedGraph
 }
 
 // Computes the SCC that contains the given node
 const gatherScc = (
-  graph: number[][],
-  visited: boolean[],
-  node: number,
-  scc: number[]
+	graph: number[][],
+	visited: boolean[],
+	node: number,
+	scc: number[]
 ) => {
-  if (visited[node]) {
-    return
-  }
-  visited[node] = true
-  scc.push(node)
+	if (visited[node]) {
+		return
+	}
+	visited[node] = true
+	scc.push(node)
 
-  for (const dest of graph[node]) {
-    gatherScc(graph, visited, dest, scc)
-  }
+	for (const dest of graph[node]) {
+		gatherScc(graph, visited, dest, scc)
+	}
 }
 
 /**
@@ -62,23 +62,23 @@ const gatherScc = (
  * @see https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm
  */
 export const kosajaru = (graph: number[][]): number[][] => {
-  const visited = Array(graph.length).fill(false)
+	const visited = Array(graph.length).fill(false)
 
-  const stack: number[] = []
-  for (let i = 0; i < graph.length; ++i) {
-    getNodePriorities(graph, visited, stack, i)
-  }
+	const stack: number[] = []
+	for (let i = 0; i < graph.length; ++i) {
+		getNodePriorities(graph, visited, stack, i)
+	}
 
-  const transposedGraph = transpose(graph)
+	const transposedGraph = transpose(graph)
 
-  const sccs = []
-  visited.fill(false)
-  for (let i = stack.length - 1; i >= 0; --i) {
-    if (!visited[stack[i]]) {
-      const scc: number[] = []
-      gatherScc(transposedGraph, visited, stack[i], scc)
-      sccs.push(scc)
-    }
-  }
-  return sccs
+	const sccs = []
+	visited.fill(false)
+	for (let i = stack.length - 1; i >= 0; --i) {
+		if (!visited[stack[i]]) {
+			const scc: number[] = []
+			gatherScc(transposedGraph, visited, stack[i], scc)
+			sccs.push(scc)
+		}
+	}
+	return sccs
 }

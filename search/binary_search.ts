@@ -15,50 +15,50 @@
  */
 
 export const binarySearchIterative = (
-  array: number[],
-  target: number,
-  start: number = 0,
-  end: number = array.length - 1
+	array: number[],
+	target: number,
+	start: number = 0,
+	end: number = array.length - 1
 ): number | null => {
-  if (array.length === 0) return null
+	if (array.length === 0) return null
 
-  // ensure the target is within the bounds of the array
-  if (target < array[start] || target > array[end]) return null
+	// ensure the target is within the bounds of the array
+	if (target < array[start] || target > array[end]) return null
 
-  // declare pointers for the middle index
-  let middle = (start + end) >> 1
+	// declare pointers for the middle index
+	let middle = (start + end) >> 1
 
-  while (array[middle] !== target && start <= end) {
-    // if the target is less than the middle value, move the end pointer to be middle -1 to narrow the search space
-    // otherwise, move the start pointer to be middle + 1
-    if (target < array[middle]) end = middle - 1
-    else start = middle + 1
-    // redeclare the middle index when the search window changes
-    middle = (start + end) >> 1
-  }
-  // return the middle index if it is equal to target
-  return array[middle] === target ? middle : null
+	while (array[middle] !== target && start <= end) {
+		// if the target is less than the middle value, move the end pointer to be middle -1 to narrow the search space
+		// otherwise, move the start pointer to be middle + 1
+		if (target < array[middle]) end = middle - 1
+		else start = middle + 1
+		// redeclare the middle index when the search window changes
+		middle = (start + end) >> 1
+	}
+	// return the middle index if it is equal to target
+	return array[middle] === target ? middle : null
 }
 
 export const binarySearchRecursive = (
-  array: number[],
-  target: number,
-  start = 0,
-  end = array.length - 1
+	array: number[],
+	target: number,
+	start = 0,
+	end = array.length - 1
 ): number | null => {
-  if (array.length === 0) return null
+	if (array.length === 0) return null
 
-  // ensure the target is within the bounds of the array
-  if (target < array[start] || target > array[end]) return null
+	// ensure the target is within the bounds of the array
+	if (target < array[start] || target > array[end]) return null
 
-  const middle = (start + end) >> 1
+	const middle = (start + end) >> 1
 
-  if (array[middle] === target) return middle // target found
-  if (start > end) return null // target not found
+	if (array[middle] === target) return middle // target found
+	if (start > end) return null // target not found
 
-  // if the target is less than the middle value, move the end pointer to be middle -1 to narrow the search space
-  // otherwise, move the start pointer to be middle + 1
-  return target < array[middle]
-    ? binarySearchRecursive(array, target, start, middle - 1)
-    : binarySearchRecursive(array, target, middle + 1, end)
+	// if the target is less than the middle value, move the end pointer to be middle -1 to narrow the search space
+	// otherwise, move the start pointer to be middle + 1
+	return target < array[middle]
+		? binarySearchRecursive(array, target, start, middle - 1)
+		: binarySearchRecursive(array, target, middle + 1, end)
 }
